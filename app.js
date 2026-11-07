@@ -12,6 +12,7 @@ const CONFIG = {
   PHOTOS: [
     { src: 'assets/p3.jpg', ar: 3913/5870, alt: 'Áo cử nhân' },
     { src: 'assets/p2.jpg', ar: 6000/4000, alt: 'Bên chiếc xe cổ', land: 1 },
+    { src: 'assets/p8.jpg', ar: 1024/1536, alt: 'Thêm một khoảnh khắc' },
     { src: 'assets/p4.jpg', ar: 3937/5906, alt: 'Ban công' },
     { src: 'assets/p5.jpg', ar: 4000/6000, alt: 'Khoảnh khắc xoay váy' },
     { src: 'assets/p6.jpg', ar: 6000/4000, alt: 'Cầu thang cổ', land: 1 },
@@ -32,7 +33,7 @@ let W = 0, H = 0, DPR = 1;
 const petals = [];
 const COLORS = ['#c4455f', '#e58aa0', '#f4b7c4', '#9a2c47', '#fad3dc', '#ecc994'];
 function size() {
-  DPR = Math.min(devicePixelRatio || 1, 2);
+  DPR = Math.min(devicePixelRatio || 1, 1.5);
   W = cv.width = innerWidth * DPR; H = cv.height = innerHeight * DPR;
 }
 addEventListener('resize', () => { size(); if (F.on) funnelGeom(); }); size();
@@ -363,12 +364,12 @@ function initFlow() {
       const dd = d + drag, a = Math.abs(dd), vis = a < 3.2;
       f.style.transform = `translate(-50%,-50%) translateX(${dd * step * (a > 1 ? 1 : 1.35) + Math.sign(dd) * Math.min(a, 1) * 40}px) translateZ(${-a * 150}px) rotateY(${Math.max(-60, Math.min(60, -dd * 42))}deg) scale(${1 - Math.min(a, 2) * .04})`;
       f.style.opacity = vis ? Math.max(0, 1 - a * .28) : 0; f.style.zIndex = 100 - Math.round(a * 10);
-      f.style.filter = a < .5 ? 'none' : `brightness(${Math.max(.35, 1 - a * .3)})`; f.style.pointerEvents = vis ? 'auto' : 'none';
+      f.style.pointerEvents = vis ? 'auto' : 'none';
     });
     $$('i', dots).forEach((d, i) => d.classList.toggle('on', i === idx));
   }
   const go = k => { idx = (k + n) % n; layout(); };
-  let sx = 0, dragging = false, moved = 0, tid;
+  let sx = 0, dragging = false, moved = 0, tid, wheelLock = false;
   flow.addEventListener('pointerdown', e => { dragging = true; sx = e.clientX; moved = 0; flow.setPointerCapture(e.pointerId); flow.style.setProperty('cursor', 'grabbing'); items.forEach(f => f.style.transition = 'none'); });
   flow.addEventListener('pointermove', e => { if (!dragging) return; moved = e.clientX - sx; layout(-moved / 170); });
   const end = e => {
@@ -383,13 +384,25 @@ function initFlow() {
       }
     }
   };
+  flow.addEventListener('lostpointercapture', () => { if (dragging) end({ clientX: sx + moved, clientY: 0, target: flow }); });
   flow.addEventListener('pointerup', end); flow.addEventListener('pointercancel', end);
   $('[data-prev]', sheetBody).onclick = () => go(idx - 1);
   $('[data-next]', sheetBody).onclick = () => go(idx + 1);
   flow.addEventListener('keydown', e => { if (e.key === 'ArrowRight') go(idx + 1); if (e.key === 'ArrowLeft') go(idx - 1); });
-  const auto = () => { tid = setInterval(() => { if (!dragging) go(idx + 1); }, 3600); };
-  if (!reduce) auto();
-  flow.addEventListener('pointerdown', () => clearInterval(tid));
+  /* Tự lướt chỉ khi người xem đứng yên: mọi thao tác đều tạm dừng, im lặng 7s mới chạy lại */
+  let last = 0, hover = false;
+  const touch = () => { last = Date.now(); };
+  const tick = () => {
+    if (dragging || hover || document.hidden || !lb.hidden || Date.now() - last < 7000) return;
+    go(idx + 1);
+  };
+  tid = setInterval(tick, 3600);
+  if (reduce) clearInterval(tid);
+  ['pointerdown', 'pointermove', 'pointerup', 'wheel', 'keydown', 'touchstart', 'focusin'].forEach(t => flow.addEventListener(t, touch, { passive: true }));
+  $$('[data-prev],[data-next]', sheetBody).forEach(b => b.addEventListener('click', touch));
+  flow.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hover = true; });
+  flow.addEventListener('pointerleave', () => { hover = false; touch(); });
+  flow.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 20 && !wheelLock) { wheelLock = true; go(idx + (e.deltaX > 0 ? 1 : -1)); setTimeout(() => wheelLock = false, 600); } }, { passive: true });
   addEventListener('resize', layout);
   layout();
   return () => { clearInterval(tid); removeEventListener('resize', layout); };
@@ -454,4 +467,6 @@ function initForm(form) {
   });
   $$('input,textarea', form).forEach(el => el.addEventListener('input', () => el.classList.remove('err')));
 }
+/* nạp sẵn & giải mã ảnh để lướt không bị khựng */
+addEventListener('load',()=>setTimeout(()=>CONFIG.PHOTOS.forEach(p=>{const i=new Image();i.src=(p.src||p);i.decode&&i.decode().catch(()=>{})}),1200));
 })();

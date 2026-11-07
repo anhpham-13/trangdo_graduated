@@ -320,7 +320,7 @@ html{scrollbar-width:thin;scrollbar-color:#7a2a40 #12060a}
 @media (max-height:620px){.intro-title{font-size:clamp(1.4rem,5vw,2rem)}.intro-name{font-size:1.2rem}.open-btn{padding:10px 24px}}
 
 .sealed .btn{margin-top:14px;justify-self:center}
-body.fx #petals{z-index:95}
+body.revealed #petals{z-index:95}
 
 .sheet-body:has(.mem){display:flex;flex-direction:column}
 .mem{margin:auto;width:100%}

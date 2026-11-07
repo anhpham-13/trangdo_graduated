@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thiệp tốt nghiệp · Thuỳ Trang</title>
+<meta name="description" content="Thiệp mời tốt nghiệp của Đỗ Đoàn Thuỳ Trang · 15:00, Thứ Bảy 14/11/2026 · HUTECH Thủ Đức Campus">
+<meta name="theme-color" content="#12060a">
+<meta property="og:title" content="Thiệp mời tốt nghiệp · Đỗ Đoàn Thuỳ Trang">
+<meta property="og:description" content="15:00 · Thứ Bảy 14/11/2026 · HUTECH Thủ Đức Campus. Mình rất mong có bạn ở đó!">
+<meta property="og:image" content="assets/main.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+<!-- ============ INTRO (cinematic opening) ============ -->
+<div id="intro">
+  <div class="bar top"></div><div class="bar bot"></div>
+  <div class="intro-glow"></div>
+  <div class="intro-center">
+    <p class="intro-line">Gửi những người thương của mình</p>
+    <div class="funnel-space" id="funnelSpace" role="button" tabindex="0" aria-label="Chạm để mở thiệp"></div>
+    <p class="intro-title">Thiệp tốt nghiệp</p>
+    <p class="intro-name">Thuỳ Trang</p>
+    <button class="open-btn" id="openBtn" type="button"><span>Chạm để mở thiệp</span></button>
+  </div>
+</div>
+
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<button id="music" class="vinyl" type="button" aria-label="Bật/tắt nhạc" aria-pressed="false">
+  <span class="disc"></span><span class="note">♪</span>
+</button>
+<audio id="bgm" src="assets/music.mp3" loop preload="auto"></audio>
+
+<main id="card">
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-year" aria-hidden="true">2026</div>
+    <div class="hero-grid">
+      <div class="stage">
+        <div class="photo3d" id="photo3d">
+          <div class="halo"></div>
+          <div class="frame-ring"></div>
+          <figure class="photo">
+            <img src="assets/main.jpg" alt="Thuỳ Trang trong ngày tốt nghiệp" width="1000" height="1500" fetchpriority="high">
+            <span class="glare"></span>
+            <figcaption class="photo-name">Thuỳ Trang</figcaption>
+          </figure>
+          <div class="tag tag-a"><i>✦</i> Class of 2026</div>
+          <div class="tag tag-b">HUTECH</div>
+        </div>
+      </div>
+
+      <div class="hero-text">
+        <p class="eyebrow rv">Thiệp mời tốt nghiệp</p>
+        <h1 id="title" aria-label="Đỗ Đoàn Thuỳ Trang"><span class="ln" data-split>Đỗ Đoàn</span><span class="ln accent" data-split>Thuỳ Trang</span></h1>
+        <p class="lede rv">Mảnh ghép cuối cùng để khép lại 4 năm đại học — mình rất mong có bạn ở đó.</p>
+        <ul class="facts rv">
+          <li><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>15:00 · Thứ Bảy, 14/11/2026</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg>HUTECH · Thủ Đức Campus</li>
+        </ul>
+        <div class="countdown rv" id="countdown" aria-live="off">
+          <div><b id="cd-d">00</b><span>ngày</span></div>
+          <div><b id="cd-h">00</b><span>giờ</span></div>
+          <div><b id="cd-m">00</b><span>phút</span></div>
+          <div><b id="cd-s">00</b><span>giây</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTERS ============ -->
+  <section class="chapters" id="chapters">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Những cánh cửa</p>
+      <h2>Mở từng <em>chương</em> thanh xuân</h2>
+    </header>
+
+    <div class="grid">
+      <button class="door reveal" data-open="letter" type="button" style="--i:0">
+        <span class="door-in">
+          <small>Chương 01</small>
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-mail"/></svg></span>
+          <strong>Lá thư</strong><em>Lời mời bí mật</em>
+          <span class="orb"></span><span class="go">Mở cửa <i>↗</i></span>
+        </span>
+      </button>
+      <button class="door reveal" data-open="date" type="button" style="--i:1">
+        <span class="door-in">
+          <small>Chương 02</small>
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg></span>
+          <strong>Ngày hẹn</strong><em>Thời gian · Địa điểm</em>
+          <span class="orb"></span><span class="go">Mở cửa <i>↗</i></span>
+        </span>
+      </button>
+      <button class="door reveal" data-open="memories" type="button" style="--i:2">
+        <span class="door-in">
+          <small>Chương 03</small>
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-flower"/></svg></span>
+          <strong>Kỷ niệm</strong><em>Thước phim thanh xuân</em>
+          <span class="orb"></span><span class="go">Mở cửa <i>↗</i></span>
+        </span>
+      </button>
+      <button class="door reveal" data-open="wish" type="button" style="--i:3">
+        <span class="door-in">
+          <small>Chương 04</small>
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-heart"/></svg></span>
+          <strong>Lời chúc</strong><em>Để lại lời chúc</em>
+          <span class="orb"></span><span class="go">Mở cửa <i>↗</i></span>
+        </span>
+      </button>
+      <button class="door wide reveal" data-open="rsvp" type="button" style="--i:4">
+        <span class="door-in">
+          <small>Chương cuối</small>
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span>
+          <strong>Lời hẹn</strong><em>Bạn sẽ đến chứ?</em>
+          <span class="orb"></span><span class="go">Mở cửa <i>↗</i></span>
+        </span>
+      </button>
+    </div>
+
+    <footer class="foot reveal">
+      <p class="sig">Thương mến,</p>
+      <p class="sig-name">Đỗ Đoàn Thuỳ Trang</p>
+      <p class="tiny">Tốt nghiệp 2026 · HUTECH</p>
+    </footer>
+  </section>
+</main>
+
+<!-- ============ MODAL ============ -->
+<div id="modal" class="modal" hidden>
+  <div class="backdrop" data-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <button class="x" data-close type="button" aria-label="Đóng">×</button>
+    <div class="sheet-body" id="sheetBody"></div>
+  </div>
+</div>
+
+<div id="lightbox" class="lightbox" hidden><button class="x" type="button" aria-label="Đóng">×</button><img alt=""></div>
+
+<!-- ============ TEMPLATES ============ -->
+<template id="tpl-letter">
+  <div class="letter">
+    <aside class="letter-photo"><img src="assets/p3.jpg" alt="Thuỳ Trang trong áo cử nhân" loading="lazy"><span>Tâm thư</span></aside>
+    <article class="paper">
+      <p class="eyebrow">Chương 01 · Lá thư</p>
+      <h3 id="sheetTitle">Tâm thư</h3>
+      <p class="rv">Gửi những người thương của mình,</p>
+      <p class="rv">Thanh xuân của mình hóa ra lại rực rỡ và trọn vẹn đến thế, vì trong từng chặng đường đã qua, chưa bao giờ mình phải đi một mình. Cảm ơn vì đã cùng mình sẻ chia những mùa thi áp lực, những đêm thức trắng vì đồ án, và cả những lời tâm sự, động viên khi mình gặp sóng gió trong cuộc sống.</p>
+      <p class="rv">Ngày tốt nghiệp này sẽ chỉ là một cột mốc bình thường nếu thiếu đi bóng dáng và tiếng cười của những người mình quý mến. Sự hiện diện của bạn vào ngày hôm ấy chính là mảnh ghép cuối cùng để khép lại 4 năm đại học của mình một cách hoàn hảo nhất.</p>
+      <p class="rv">Mình rất mong bạn sẽ có mặt để cùng mình lưu lại khoảnh khắc trưởng thành này:</p>
+      <ul class="rv bullets">
+        <li><b>Thời gian:</b> 15h00 – Thứ bảy, ngày 14 tháng 11 năm 2026</li>
+        <li><b>Địa điểm:</b> tại cơ sở Thủ Đức Campus của HUTECH.</li>
+      </ul>
+      <p class="rv">Đến chung vui và chụp với mình thật nhiều kiểu ảnh kỷ niệm nha!</p>
+      <p class="rv sign">Thương mến,<br><strong>Đỗ Đoàn Thuỳ Trang</strong></p>
+    </article>
+  </div>
+</template>
+
+<template id="tpl-date">
+  <div class="date">
+    <p class="eyebrow">Chương 02 · Ngày hẹn</p>
+    <h3 id="sheetTitle">Một ngày để <em>nhớ</em></h3>
+    <div class="ticket">
+      <div class="t-left">
+        <span class="t-mon">Tháng 11</span>
+        <span class="t-day">14</span>
+        <span class="t-year">2026</span>
+      </div>
+      <div class="t-right">
+        <p><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg><span><b>Thứ Bảy</b><br>14 tháng 11 năm 2026</span></p>
+        <p><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg><span><b>15:00</b><br>Có mặt đúng giờ nha!</span></p>
+        <p><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg><span><b>Thủ Đức Campus</b><br>Trường Đại học Công nghệ TP.HCM (HUTECH)</span></p>
+      </div>
+    </div>
+    <div class="countdown small" data-cd>
+      <div><b data-d>00</b><span>ngày</span></div><div><b data-h>00</b><span>giờ</span></div>
+      <div><b data-m>00</b><span>phút</span></div><div><b data-s>00</b><span>giây</span></div>
+    </div>
+    <div class="btns">
+      <a class="btn gold" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=HUTECH+Thu+Duc+Campus">Chỉ đường ↗</a>
+      <a class="btn ghost" target="_blank" rel="noopener" data-gcal href="#">Google Calendar</a>
+      <button class="btn ghost" type="button" data-ics>Lịch iPhone / Outlook (.ics)</button>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-memories">
+  <div class="mem">
+    <p class="eyebrow">Chương 03 · Kỷ niệm</p>
+    <h3 id="sheetTitle">Thước phim <em>thanh xuân</em></h3>
+    <div class="flow" id="flow" tabindex="0" aria-roledescription="carousel">
+      <div class="flow-track"></div>
+    </div>
+    <div class="flow-ctl">
+      <button type="button" data-prev aria-label="Trước">‹</button>
+      <span class="dots"></span>
+      <button type="button" data-next aria-label="Sau">›</button>
+    </div>
+    <p class="hint">Vuốt hoặc kéo để lướt · chạm ảnh giữa để xem lớn</p>
+  </div>
+</template>
+
+<template id="tpl-wish">
+  <form class="form" data-kind="wish" novalidate>
+    <p class="eyebrow">Chương 04 · Lời chúc</p>
+    <h3 id="sheetTitle">Gửi một <em>lời chúc</em></h3>
+    <p class="sub">Dành cho Trang một lời nhắn, rồi chính tay đóng dấu sáp lên thiệp chúc mừng.</p>
+    <label>Tên của bạn<input name="name" required maxlength="60" placeholder="Ví dụ: Mai Anh" autocomplete="name"></label>
+    <label>Lời chúc dành cho Trang<textarea name="msg" required rows="4" maxlength="500" placeholder="Chúc mừng Trang tốt nghiệp..."></textarea></label>
+    <p class="note" data-note>Lời chúc sẽ được sao chép/chia sẻ để bạn gửi riêng cho Trang qua tin nhắn.</p>
+    <button class="btn gold" type="submit"><span>Gửi lời chúc &amp; đóng dấu</span> ✦</button>
+    <div class="sealed" hidden><div class="wax"><span>T</span></div><p data-result></p><a class="btn gold" data-zalo hidden target="_blank" rel="noopener">Mở Zalo gửi cho Trang ↗</a></div>
+  </form>
+</template>
+
+<template id="tpl-rsvp">
+  <form class="form" data-kind="rsvp" novalidate>
+    <p class="eyebrow">Chương cuối · Lời hẹn</p>
+    <h3 id="sheetTitle">Một lời <em>hẹn gặp</em></h3>
+    <p class="sub">Trang hẹn bạn đến chung vui lúc <b>15:00, ngày 14/11/2026</b>. Bạn sẽ đến chứ?</p>
+    <label>Tên khách mời<input name="name" required maxlength="60" placeholder="Tên của bạn" autocomplete="name"></label>
+    <fieldset>
+      <legend>Bạn có đến không?</legend>
+      <label class="opt"><input type="radio" name="att" value="Mình sẽ đến" checked><span>✦ Mình sẽ đến</span></label>
+      <label class="opt"><input type="radio" name="att" value="Mình đang sắp xếp"><span>♡ Mình đang sắp xếp</span></label>
+      <label class="opt"><input type="radio" name="att" value="Tiếc quá, mình không đến được"><span>✧ Tiếc quá, mình không đến được</span></label>
+    </fieldset>
+    <label>Lời nhắn (tùy chọn)<textarea name="msg" rows="3" maxlength="300" placeholder="Mình sẽ có mặt lúc 15:00 nhé!"></textarea></label>
+    <p class="note" data-note>Thông tin phản hồi được gửi riêng đến Trang, không hiển thị công khai.</p>
+    <button class="btn gold" type="submit"><span>Gửi xác nhận tham dự</span> ✦</button>
+    <div class="sealed" hidden><div class="wax"><span>T</span></div><p data-result></p><a class="btn gold" data-zalo hidden target="_blank" rel="noopener">Mở Zalo gửi cho Trang ↗</a></div>
+  </form>
+</template>
+
+<!-- ============ ICONS ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6.5L20.5 7"/></g></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/><path d="m12 12.8.9 1.9 2 .3-1.5 1.4.4 2-1.8-1-1.8 1 .4-2-1.5-1.4 2-.3z" fill="currentColor" stroke="none"/></g></symbol>
+    <symbol id="i-flower" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><circle cx="12" cy="12" r="2.2"/><path d="M12 9.8C10 8 10.2 4.5 12 3c1.8 1.5 2 5 0 6.8ZM14.2 12c1.8-2 5.3-1.8 6.8 0-1.5 1.8-5 2-6.8 0ZM12 14.2c2 1.8 1.8 5.3 0 6.8-1.8-1.5-2-5 0-6.8ZM9.8 12c-1.8 2-5.3 1.8-6.8 0 1.5-1.8 5-2 6.8 0Z"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5C5 15.6 3 12.3 3 9.2 3 6.7 5 5 7.2 5c1.9 0 3.4 1 4.8 3 1.4-2 2.9-3 4.8-3C19 5 21 6.700 21 9.2c0 3.100-2 6.400-9 11.300Z" fill="currentColor"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.500c.8 4.800 3.200 8.200 8.500 9.500-5.300 1.300-7.700 4.700-8.500 9.500-.8-4.800-3.200-8.200-8.500-9.500C8.800 10.700 11.200 7.300 12 2.500Z" fill="currentColor"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="8.500"/><path d="M12 7.500V12l3 2"/></g></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 21s6.500-5.700 6.500-11A6.500 6.500 0 0 0 5.500 10C5.500 15.300 12 21 12 21Z"/><circle cx="12" cy="10" r="2.300"/></g></symbol>
+  </defs>
+</svg>
+
+<script src="app.js"></script>
+</body>
+</html>
